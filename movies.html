@@ -3,30 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="On Moviestack, you can find very intereting and varied movie reviews. This way we will help you choose a movie that is perfect for you!">
+    <link rel="shortcut icon" href="./assets/images/Moviestack_favicon2.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./main.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Movies</title>
 </head>
 <body>
-    <header>
-        <img src="./assets/images/Moviestack_isotipo.png" alt="Moviestack isotipo">
-        <h1>MOVIESTACK</h1>
-
-        <nav>
-            <a href="./index.html">HOME</a>
-            <a href="#">MOVIES</a>
-            <a href="#">FAVS</a>
-        </nav>
-    </header>
-
-    <main id="contenedormain">
-        <h2>MOVIES</h2>
-    </main>
+    <div class="w-full flex flex-col bg-violet-950">
+        <header>
+            <header class="flex flex-col">
+                <div class="h-[60px] flex flex-row flex-nowrap items-center gap-[10px] p-[10px]">
+                    <img class="w-20 h-20 object-cover" src="./assets/images/Moviestack_isotipo.png" alt="Moviestack isotipo">
+                    <h1 class="bebas-neue text-5xl text-white">MOVIESTACK</h1>
+                </div>
     
-    <footer>
-        © Moviestack - MindHub
-    </footer>
-
-    <script src="./data.js"></script>
-    <script src="./movies.js"></script>
+                <nav class="h-[40px] p-[10px] flex flex-row flex-nowrap justify-center text-[20px]"></nav>
+                    <a class="w-28 p-[5px] border-violet-400 rounded-3xl text-violet-400 raleway hover:border-white bg-violet-400 text-violet-950" href="#"></a>HOME</a>
+                    <a class="w-28 p-[5px] border-white bg-violet-400 rounded-3xl text-white raleway" href="./movies.html">MOVIES</a>
+                    <a class="w-28 p-[5px] border-violet-400 rounded-3xl text-violet-400 raleway hover:border-white bg-violet-400 text-violet-950" href="#">FAVS</a>
+                </nav>
+            </header>
+        </header>
+    
+        <main id="contenedormain">
+            <h2 class="font-bold text-2xl" >MOVIES</h2>
+        </main>
+        
+        <footer>
+            © Moviestack - MindHub
+        </footer>
+    
+        <script src="./data.js"></script>
+        <script src="./movies.js"></script>
+    </div>
+    
 </body>
 </html>

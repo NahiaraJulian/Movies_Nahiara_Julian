@@ -4,39 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="On Moviestack, you can find very intereting and varied movie reviews. This way we will help you choose a movie that is perfect for you!">
+    <link rel="shortcut icon" href="./assets/images/Moviestack_favicon2.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./main.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Home</title>
+    <title>Moviestack - Home</title>
 </head>
 
 <body>
-    <header>
-        <img src="./assets/images/Moviestack_isotipo.png" alt="Moviestack isotipo">
-        <h1>MOVIESTACK</h1>
+    <div class="w-full flex flex-col bg-violet-950">
 
-        <nav>
-            <a href="#">HOME</a>
-            <a href="./movies.html">MOVIES</a>
-            <a href="#">FAVS</a>
-        </nav>
-    </header>
-    <main>
-        <img src="" alt="">
-        <p>Are you tired of not knowing which movie you are going to see? Or did you start watching a movie and in the
-            end you didn't like it?</p>
+        <header class="flex flex-col">
+            <div class="h-[60px] flex flex-row flex-nowrap items-center gap-[10px] p-[10px]">
+                <img class="w-20 h-20 object-cover" src="./assets/images/Moviestack_isotipo.png" alt="Moviestack isotipo">
+                <h1 class="bebas-neue text-5xl text-white">MOVIESTACK</h1>
+            </div>
 
-        <p>Spennding your free time watching movies, alone or with friends, is something very pleasant. But many times
-            it is difficult to choose a movie (among so many) that suits your tastes</p>
-            
-        <p>Here, on Moviestack, you can find very intereting and varied movie reviews. This way we will help you choose
-            a movie that is perfect for you!</p>
+            <nav class="h-[40px] p-[10px] flex flex-row flex-nowrap justify-center text-[20px]"></nav>
+                <a class="w-28 p-[5px] border-white bg-violet-400 rounded-3xl text-white raleway" href="#">HOME</a>
+                <a class="w-28 p-[5px] border-violet-400 rounded-3xl text-violet-400 raleway hover:border-white bg-violet-400 text-violet-950" href="./movies.html">MOVIES</a>
+                <a class="w-28 p-[5px] border-violet-400 rounded-3xl text-violet-400 raleway hover:border-white bg-violet-400 text-violet-950" href="#">FAVS</a>
+            </nav>
+        </header>
+    
+        <main class="w-full min-h-screen grow">
+            <img class="w-full h-[30vh] object-cover" src="./assets/images/banner_movies.png" alt="Banner with popcorn and a control">
+            <div class="text-white">
+                <p>Are you tired of not knowing which movie you are going to see? Or did you start watching a movie and in the
+                    end you didn't like it?
+                </p>
+    
+                <p>Spennding your free time watching movies, alone or with friends, is something very pleasant. But many times
+                    it is difficult to choose a movie (among so many) that suits your tastes
+                </p>
+    
+                <p>Here, on Moviestack, you can find very intereting and varied movie reviews. This way we will help you choose
+                    a movie that is perfect for you!
+                </p>
+            </div>
 
-        <a href="./movies.html">Watch this amazing movies!</a>
-        <a href="#">Your favorite movies are here</a>
-        
-    </main>
-    <footer>
-        © Moviestack - MindHub
-    </footer>
+            <div class="w-full flex flex-row" >
+                <a class="bg-violet-400 w-[200px] h-[70px] raleway" href="./movies.html">Watch this amazing movies!</a>
+                <a class="bg-violet-400 w-[200px] h-[70px] raleway" href="#">Your favorite movies are here</a>
+            </div>
+        </main>
+    
+        <footer>
+            <p> © Moviestack - MindHub</p>
+        </footer>
+    </div>
 </body>
 
 </html>
