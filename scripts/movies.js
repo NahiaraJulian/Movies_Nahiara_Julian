@@ -58,8 +58,6 @@ function createOptions(genres) {
 const fnReduce = (template, genres) => template + createOptions(genres)
 select.innerHTML = genresArray.reduce(fnReduce, `<option selected id="default" value="none" >Select a genres</option>`)
 
-
-
 //detectar el evento
 input.addEventListener(`input`, () => {
     //filtrar por titulo
