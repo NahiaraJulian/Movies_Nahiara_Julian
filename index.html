@@ -25,21 +25,21 @@
     <div class="w-full flex flex-col bg-violet-950">
 
         <header class="flex flex-col">
-            <div class="h-[60px] flex flex-row flex-nowrap items-center gap-[10px] p-[10px]">
-                <img class="w-20 h-20 object-cover" src="./assets/images/Moviestack_isotipo.png" alt="Moviestack isotipo">
-                <h1 class="bebas-neue text-5xl text-white">MOVIESTACK</h1>
+            <div class="h-10 flex justify-center items-center mt-4 mb-4 md:justify-start">
+                <img class="w-[5rem] h-[5rem] object-cover" src="./assets/images/Moviestack_isotipo.png" alt="Moviestack isotipo">
+                <h1 class="bebas-neue text-4xl text-white pt-[10px] md:text-5xl">MOVIESTACK</h1>
             </div>
 
-            <nav class="h-[40px] p-[10px] flex flex-row flex-nowrap justify-center text-[20px]"></nav>
-                <a class="w-28 p-[5px] border-white bg-violet-400 rounded-3xl text-white raleway" href="#">HOME</a>
-                <a class="w-28 p-[5px] border-violet-400 rounded-3xl text-violet-400 raleway hover:border-white bg-violet-400 text-violet-950" href="./movies.html">MOVIES</a>
-                <a class="w-28 p-[5px] border-violet-400 rounded-3xl text-violet-400 raleway hover:border-white bg-violet-400 text-violet-950" href="#">FAVS</a>
+            <nav class="h-9 flex justify-evenly items-center bg-violet-400 text-sm mt-2 md:text-base">
+                <a class="flex justify-center items-center w-20 h-6 border-violet-950 border-t-2 border-l-2 bg-violet-600 rounded-3xl text-white text-center font-semibold raleway" href="#">HOME</a>
+                <a class="flex justify-center items-center w-20 h-6 border-white rounded-3xl text-violet-950 font-semibold text-center raleway hover:bg-violet-600 hover:text-white" href="./movies.html">MOVIES</a>
+                <a class="flex justify-center items-center w-20 h-6 border-white rounded-3xl text-violet-950 font-semibold text-center raleway hover:bg-violet-600 hover:text-white" href="#">FAVS</a>
             </nav>
         </header>
     
-        <main class="w-full min-h-screen grow">
-            <img class="w-full h-[30vh] object-cover" src="./assets/images/banner_movies.png" alt="Banner with popcorn and a control">
-            <div class="text-white">
+        <main class="w-full min-h-[85vh] grow">
+            <img class="w-full object-cover mb-7 md:h-80" src="./assets/images/banner_movies.png" alt="Banner with popcorn and a control">
+            <div class="flex flex-col gap-3 text-white mx-3">
                 <p>Are you tired of not knowing which movie you are going to see? Or did you start watching a movie and in the
                     end you didn't like it?
                 </p>
@@ -53,13 +53,13 @@
                 </p>
             </div>
 
-            <div class="w-full flex flex-row" >
-                <a class="bg-violet-400 w-[200px] h-[70px] raleway" href="./movies.html">Watch this amazing movies!</a>
-                <a class="bg-violet-400 w-[200px] h-[70px] raleway" href="#">Your favorite movies are here</a>
+            <div class="mt-12 w-full flex flex-col items-center gap-5 md:flex-row md:justify-center md:gap-28" >
+                <a class="flex justify-center items-center border-violet-500 border-e-4 border-b-4 rounded-full bg-violet-400 w-64 h-10 font-semibold raleway" href="./movies.html">Watch this amazing movies!</a>
+                <a class="flex justify-center items-center border-violet-500 border-e-4 border-b-4 rounded-full bg-violet-400 w-64 h-10 font-semibold raleway" href="#">Your favorite movies are here</a>
             </div>
         </main>
     
-        <footer>
+        <footer class="text-white mt-7">
             <p> © Moviestack - MindHub</p>
         </footer>
     </div>
