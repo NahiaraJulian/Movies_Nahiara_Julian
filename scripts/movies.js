@@ -1,7 +1,7 @@
 const $div = document.getElementById("div_movies")
 const $input = document.getElementById("search_input")
 const $select = document.getElementById("genres_select")
-
+const buttons = document.querySelectorAll("button")
 
 const url = "https://moviestack.onrender.com/api/movies"
 const init = {
@@ -18,25 +18,8 @@ fetch (url, init)
         //console.log(movies);
         renderCards(movies, $div, createCard)
         createSelect(movies, $select)
-        addPropertyFav(movies)
-
-        const buttons = document.querySelectorAll("button")
-        let favsMovies = []
-        //const article = document.querySelectorAll("article")
+        addProperties(movies)
         
-        /*
-        console.log(buttons)
-        for (const buttonFav of buttons) {
-            buttonFav.addEventListener(`click`, () => {
-                console.log(buttonFav)
-                const newClass = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-red-600 text-4xl"            
-                if (buttonFav.className.includes("text-white")) {
-                    buttonFav.className = newClass
-                }else{
-                    buttonFav.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-white text-4xl"
-                }                        
-            })
-        }*/
 
         $input.addEventListener(`input`, () => {
             //filtrar por titulo
@@ -62,7 +45,7 @@ fetch (url, init)
 
             if ($select.value == "none") {
                 renderCards(movies, $div, createCard)
-            }            
+            }                                                    
         })
 
         $div.addEventListener(`click`, (e) => {
@@ -79,29 +62,31 @@ fetch (url, init)
             console.log(e.target)
             
             //changePropertyFav(movie)
-            //console.log( "estado anterior:", movie.favorite )
-            movie.favorite = !movie.favorite
-            //console.log( "now:", movie.favorite )
-
-            if (movie.favorite == true) {                
-                e.target.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-red-600 text-4xl"
-            }else{
-                e.target.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-white text-4xl"
-            }
-
+            console.log( "estado anterior:", movie.favorite )
+            //movie.favorite = !movie.favorite
+            changeProperties(movie)
+            console.log( "now:", movie.favorite )
+            console.log(movies)
             //console.log(movies);
             const favFilteredMovie = filterByProperty(movies)
-            console.log(favFilteredMovie);            
-        })
-        
-        
+            //changeColor(movie, e, favFilteredMovie)       
+            
+            console.log(favFilteredMovie);
 
-        /*
-         if (movie.favorite == true) {
-                favsMovies.push(movie)
-                console.log(favsMovies)
+            //filtrar por titulo
+            const titleMoviesFiltrados = filterTitleMovies(movies, $input.value)
+            //filtrar por genero
+            const genresMoviesFiltrados = filterGenresMovies(titleMoviesFiltrados, $select.value)
+            //mostrar las cards de las peliculas
+            renderCards(genresMoviesFiltrados, $div, createCard)
+
+            if ($select.value == "none") {
+                const titleMoviesFiltrados = filterTitleMovies(movies, $input.value)
+                renderCards(titleMoviesFiltrados, $div, createCard)
             }
-         */  
+            //renderCards(movies, $div, createCard)
+        })
+  
     })
     .catch((error) => console.log('error:', error))
 
@@ -138,7 +123,7 @@ function createCard(movie) {
 
     const button = document.createElement(`button`)
     button.textContent = `❤`
-    button.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-white text-4xl"
+    button.className = `w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full ${movie.color || "text-white"} text-4xl`
     //button.setAttribute("id", "button_fav")
     button.setAttribute("data-buttonid", `${movie.id}`)
 
@@ -181,9 +166,22 @@ function filterGenresMovies(listMovies, selectGenres) {
     }
 }
 
-function addPropertyFav(listMovies) {
+function addProperties(listMovies) {
     for (const movie of listMovies) {
         movie.favorite = false
+        if (movie.favorite == false) {            
+            movie.color = "text-white"
+        }else{
+            movie.color = "text-red-600"
+        }
+    }
+}
+function changeProperties(movie) {
+    movie.favorite = !movie.favorite
+    if (movie.favorite == false) {            
+        movie.color = "text-white"
+    }else{
+        movie.color = "text-red-600"
     }
 }
 
@@ -191,7 +189,10 @@ function filterByProperty(listMovies){
     return listMovies.filter(movie => movie.favorite == true)
 }
 
-/*
-function changePropertyFav(movie) {
-    movie.favorite = !movie.favorite
-}*/
+function changeColor(movie, e, favFilteredMovie) {
+    if (movie.favorite == true) {                
+        e.target.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-red-600 text-4xl"
+    }else{
+        e.target.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-white text-4xl"
+    }
+}
