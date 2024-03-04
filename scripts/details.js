@@ -23,9 +23,6 @@ fetch (url, init)
     })
     .catch((error) => console.log('error:', error))
 
-
-
-
 function createDetails(div, movieFind) {
     const imgn = "https://moviestack.onrender.com/static/" + movieFind.image
     div.innerHTML = `

@@ -9,19 +9,22 @@ const init = {
     headers : {"x-api-key":"0ff70d54-dc0b-4262-9c3d-776cb0f34dbd"},
 }
 
-let movies = []
+let movies = JSON.parse(localStorage.getItem("movies")) || []
 
 fetch (url, init)
     .then((resolve) => resolve.json())
     .then ((data) => {
-        movies = data.movies
+        movies = JSON.parse(localStorage.getItem("movies")) || data.movies
         //console.log(movies);
         renderCards(movies, $div, createCard)
         createSelect(movies, $select)
         addProperties(movies)
-        
+         
+        //movies = JSON.parse(localStorage.getItem("movies"))
+        //console.log(movies)                
 
         $input.addEventListener(`input`, () => {
+            movies =JSON.parse(localStorage.getItem("movies")) || data.movies
             //filtrar por titulo
             const titleMoviesFiltrados = filterTitleMovies(movies, $input.value)
             //filtrar por genero
@@ -36,6 +39,7 @@ fetch (url, init)
         })
 
         $select.addEventListener(`change`, () => {
+            movies =JSON.parse(localStorage.getItem("movies")) || data.movies
             //filtrar por genero
             const genresMoviesFiltrados = filterGenresMovies(movies, $select.value)
             //filtrar por titulo
@@ -49,7 +53,9 @@ fetch (url, init)
         })
 
         $div.addEventListener(`click`, (e) => {
-            console.log(e.target.dataset);
+            console.log(e.target.dataset);            
+            movies =JSON.parse(localStorage.getItem("movies")) || data.movies            
+
             //buscar la pelicula que se le hace click al boton
             //cambiarle la propiedad favorite a true a la pelicula encontrada
             //cambiarle el color a los corazones
@@ -58,33 +64,27 @@ fetch (url, init)
             const movie = movies.find(movie => movie.id == e.target.dataset.buttonid)
             
             //console.log( movie.favorite )
-            console.log(movie)
-            console.log(e.target)
+            console.log(e.target)            
             
-            //changePropertyFav(movie)
-            console.log( "estado anterior:", movie.favorite )
-            //movie.favorite = !movie.favorite
+            //console.log( "estado anterior:", movie.favorite )            
             changeProperties(movie)
-            console.log( "now:", movie.favorite )
-            console.log(movies)
-            //console.log(movies);
-            const favFilteredMovie = filterByProperty(movies)
-            //changeColor(movie, e, favFilteredMovie)       
-            
+            //console.log( "now:", movie.favorite )
+            //console.log(movies)
+
+            let favFilteredMovie = filterByProperty(movies) //|| JSON.parse(localStorage.getItem("favFilteredMovie"))
             console.log(favFilteredMovie);
-
-            //filtrar por titulo
+            
             const titleMoviesFiltrados = filterTitleMovies(movies, $input.value)
-            //filtrar por genero
             const genresMoviesFiltrados = filterGenresMovies(titleMoviesFiltrados, $select.value)
-            //mostrar las cards de las peliculas
             renderCards(genresMoviesFiltrados, $div, createCard)
-
+            
             if ($select.value == "none") {
                 const titleMoviesFiltrados = filterTitleMovies(movies, $input.value)
                 renderCards(titleMoviesFiltrados, $div, createCard)
             }
-            //renderCards(movies, $div, createCard)
+            movies = localStorage.setItem("movies", JSON.stringify(movies))
+            localStorage.setItem("favFilteredMovie", JSON.stringify(favFilteredMovie))
+            //favFilteredMovie = JSON.parse(localStorage.getItem("favFilteredMovie"))
         })
   
     })
@@ -124,7 +124,7 @@ function createCard(movie) {
     const button = document.createElement(`button`)
     button.textContent = `❤`
     button.className = `w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full ${movie.color || "text-white"} text-4xl`
-    //button.setAttribute("id", "button_fav")
+    
     button.setAttribute("data-buttonid", `${movie.id}`)
 
     article.append(img, h3, h4, p, anchor, button)
@@ -176,6 +176,7 @@ function addProperties(listMovies) {
         }
     }
 }
+
 function changeProperties(movie) {
     movie.favorite = !movie.favorite
     if (movie.favorite == false) {            

@@ -1,78 +1,73 @@
-const $div = document.getElementById("div_movies")
-/*
+const $div = document.getElementById("div_movies_favs")
+//const $input = document.getElementById("search_input")
+//const $select = document.getElementById("genres_select")
+//const buttons = document.querySelectorAll("button")
+
 const url = "https://moviestack.onrender.com/api/movies"
 const init = {
     method: "GET",
     headers : {"x-api-key":"0ff70d54-dc0b-4262-9c3d-776cb0f34dbd"},
 }
-*/
-let favsmovies = JSON.parse(localStorage.getItem("favFilteredMovie")) || []
-console.log(favsmovies)
-renderCards(favsmovies, $div, createCard)
-/*
+
+let movies = JSON.parse(localStorage.getItem("movies")) || []
+
+if ($div.innerHTML == "") {
+    console.log("add movies");
+    console.log($div)
+    $div.innerHTML = `<a class="flex justify-center items-center border-violet-500 border-e-4 border-b-4 rounded-full bg-violet-400 w-64 h-10 font-semibold raleway" href="./movies.html">Add your favorites movies ❤</a>`
+}
+
 fetch (url, init)
     .then((resolve) => resolve.json())
     .then ((data) => {
-        movies = data.movies
+        movies = JSON.parse(localStorage.getItem("movies")) || data.movies
         console.log(movies);
-        renderCards(movies, $div, createCard)
-        
-        addPropertyFav(movies)
-
-        const buttons = document.querySelectorAll("button")
-        let favsMovies = []
-        //const article = document.querySelectorAll("article")
-        
-        /*
-        console.log(buttons)
-        for (const buttonFav of buttons) {
-            buttonFav.addEventListener(`click`, () => {
-                console.log(buttonFav)
-                const newClass = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-red-600 text-4xl"            
-                if (buttonFav.className.includes("text-white")) {
-                    buttonFav.className = newClass
-                }else{
-                    buttonFav.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-white text-4xl"
-                }                        
-            })
-        }*/
-
-  /*     
+        //renderCards(movies, $div, createCard)
+        let favFilteredMovie =JSON.parse(localStorage.getItem("favFilteredMovie"))  //filterByProperty(movies) || 
+        console.log(favFilteredMovie);
+        renderCards(favFilteredMovie, $div, createCard)
+        addProperties(movies)
+       
+        //movies = JSON.parse(localStorage.getItem("movies"))
+        //console.log(movies)                
 
         $div.addEventListener(`click`, (e) => {
-            console.log(e.target.dataset);
-            //buscar la pelicula que se le hace click al boton
-            // cambiarle la propiedad favorite a true a la pelicula encontrada
-            //evaluar todas las movies que tengan la propiedad fav:true y agregarlas a un array
+            console.log(e.target.dataset);            
+            movies =JSON.parse(localStorage.getItem("movies")) || data.movies            
 
+            //buscar la pelicula que se le hace click al boton
+            //cambiarle la propiedad favorite a true a la pelicula encontrada
+            //cambiarle el color a los corazones
+            //recorrer el array de peliculas y seleccionar las que tienen la propiedad favorite:true         
             
             const movie = movies.find(movie => movie.id == e.target.dataset.buttonid)
-            //const buttonFavo = movies.find( button => dataset.buttonid == movie.id )
-            //console.log(buttonFavo);
-            //console.log( movie.favorite )
-            console.log(movie)
-
-            //changePropertyFav(movie)
-            console.log( "estado anterior:", movie.favorite )
-            movie.favorite = !movie.favorite
-            console.log( "now:", movie.favorite )
             
-           
-                     
-        })
-        
-        
+            //console.log( movie.favorite )
+            console.log(e.target)     
+            
+            //console.log( "estado anterior:", movie.favorite )            
+            changeProperties(movie)
+            //console.log( "now:", movie.favorite )
+            //console.log(movies)
 
-        /*
-         if (movie.favorite == true) {
-                favsMovies.push(movie)
-                console.log(favsMovies)
+            let favFilteredMovie = filterByProperty(movies) //|| JSON.parse(localStorage.getItem("favFilteredMovie")) 
+            console.log(favFilteredMovie);
+            
+            renderCards(favFilteredMovie, $div, createCard)
+            movies = localStorage.setItem("movies", JSON.stringify(movies))
+            localStorage.setItem("favFilteredMovie", JSON.stringify(favFilteredMovie))
+            //favFilteredMovie = JSON.parse(localStorage.getItem("favFilteredMovie"))
+            if ($div.innerHTML == "") {
+                console.log("add movies");
+                console.log($div)
+                $div.innerHTML = `<a class="flex justify-center items-center border-violet-500 border-e-4 border-b-4 rounded-full bg-violet-400 w-64 h-10 font-semibold raleway" href="./movies.html">Add your favorites movies ❤</a>`
             }
-         */  /*
+        })
+  
     })
     .catch((error) => console.log('error:', error))
 
-*/
+
 
 function createCard(movie) {
     const article = document.createElement(`article`)
@@ -102,8 +97,8 @@ function createCard(movie) {
 
     const button = document.createElement(`button`)
     button.textContent = `❤`
-    button.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-red-600 text-4xl"
-    //button.setAttribute("id", "button_fav")
+    button.className = `w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full ${movie.color || "text-white"} text-4xl`
+    
     button.setAttribute("data-buttonid", `${movie.id}`)
 
     article.append(img, h3, h4, p, anchor, button)
@@ -123,8 +118,40 @@ function renderCards(movies, element, fn){
     element.appendChild(fragment)
 }
 
-function addPropertyFav(listMovies) {
+function addProperties(listMovies) {
     for (const movie of listMovies) {
         movie.favorite = false
+        if (movie.favorite == false) {            
+            movie.color = "text-white"
+        }else{
+            movie.color = "text-red-600"
+        }
     }
+}
+
+function changeProperties(movie) {
+    movie.favorite = !movie.favorite
+    if (movie.favorite == false) {            
+        movie.color = "text-white"
+    }else{
+        movie.color = "text-red-600"
+    }
+}
+
+function filterByProperty(listMovies){
+    return listMovies.filter(movie => movie.favorite == true)
+}
+
+function changeColor(movie, e, favFilteredMovie) {
+    if (movie.favorite == true) {                
+        e.target.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-red-600 text-4xl"
+    }else{
+        e.target.className = "w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full text-white text-4xl"
+    }
+}
+
+function crearteButton(div){
+    div.innerHTML = `<div class="mt-12 w-full flex flex-col items-center gap-5 md:flex-row md:justify-center md:gap-28" >
+    <a class="flex justify-center items-center border-violet-500 border-e-4 border-b-4 rounded-full bg-violet-400 w-64 h-10 font-semibold raleway" href="./movies.html">Add your favorites movies ❤</a>
+    </div>`
 }
