@@ -96,7 +96,7 @@ function createCard(movie) {
     anchor.setAttribute("href",`./details.html?id=${movie.id}`)
 
     const button = document.createElement(`button`)
-    button.textContent = `❤`
+    button.textContent = `♥`
     button.className = `w-11 h-11 absolute self-end mt-1 mr-1 bg-violet-950 rounded-full ${movie.color || "text-white"} text-4xl`
     
     button.setAttribute("data-buttonid", `${movie.id}`)
