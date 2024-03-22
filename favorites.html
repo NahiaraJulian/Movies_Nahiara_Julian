@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./main.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Movies</title>
+    <title>Favorites</title>
 </head>
 <body>
     <div class="w-full flex flex-col bg-violet-950">
@@ -30,36 +30,26 @@
                 </div>
     
                 <nav class="h-9 flex justify-evenly items-center bg-violet-400 text-sm mt-2 md:text-base">
-                    <a class="flex justify-center items-center w-20 h-6 border-white rounded-3xl text-violet-950 font-semibold  text-center raleway hover:bg-violet-600 hover:text-white" href="./index.html">HOME</a>
-                    <a class="flex justify-center items-center w-20 h-6 border-violet-950 border-t-2 border-l-2 font-semibold bg-violet-600 rounded-3xl text-white text-center raleway" href="#">MOVIES</a>
-                    <a class="flex justify-center items-center w-20 h-6 border-white rounded-3xl text-violet-950 font-semibold  text-center raleway hover:bg-violet-600 hover:text-white" href="./favorites.html">FAVS</a>
+                    <a class="flex justify-center items-center w-20 h-6 border-white rounded-3xl text-violet-950 font-semibold text-center raleway hover:bg-violet-600 hover:text-white" href="./index.html">HOME</a>
+                    <a class="flex justify-center items-center w-20 h-6 border-white rounded-3xl text-violet-950 font-semibold text-center raleway hover:bg-violet-600 hover:text-white" href="./movies.html">MOVIES</a>
+                    <a class="flex justify-center items-center w-20 h-6 border-violet-950 border-t-2 border-l-2 font-semibold bg-violet-600 rounded-3xl text-white text-center raleway" href="#">FAVS</a>
                 </nav>            
         </header>
     
         <main class="w-full min-h-[85vh] grow" id="contenedormain">
             <img class="w-full object-cover mb-7 md:h-80" src="./assets/images/banner_movies.png" alt="Banner with popcorn and a control">
-            <h2 class="pb-7 text-center text-3xl font-bold text-white" >MOVIES</h2>
-            
-            <search class="flex flex-col items-center gap-3 md:flex-row md:justify-center">
-                <select class="w-72 rounded-md" name="genres_select" id="genres_select">
-                    <option selected disabled>Select a genres</option>
-                </select>
-    
-                <input class="w-72 rounded-md pl-1" type="text" placeholder="Search" name="search_input" id="search_input">
-            </search>
+            <h2 class="pb-7 text-center text-3xl font-bold text-white" >FAVORITES MOVIES</h2>                    
 
-            <div class="flex flex-col items-center pt-4 sm:flex-row sm:flex-wrap sm:gap-7 sm:justify-center" id="div_movies"></div>
-            
+            <div class="flex flex-col items-center pt-4 sm:flex-row sm:flex-wrap sm:gap-7 sm:justify-center" id="div_movies_favs"></div>
+
             <a class="h-10 w-10 mr-2 mb-2 fixed flex items-center justify-center bottom-0 right-0 bg-violet-600 bg-opacity-75 text-white rounded-full" href="./index.html">🏠</a>
         </main>
-
-
+        
         <footer class="text-white mt-7">
             © Moviestack - MindHub
         </footer>
-    
         
-        <script src="./scripts/movies.js"></script>
+        <script src="./scripts/favorites.js"></script>
     </div>
     
 </body>
